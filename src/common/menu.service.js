@@ -2,7 +2,8 @@
 "use strict";
 
 angular.module('common')
-.service('MenuService', MenuService);
+.service('MenuService', MenuService)
+.service('ClientService', ClientService);
 
 
 MenuService.$inject = ['$http', 'ApiPath'];
@@ -29,6 +30,25 @@ function MenuService($http, ApiPath) {
 
 }
 
+ClientService.$inject = ['$http', 'ApiPath'];
 
+function ClientService($http, ApiPath) {
+  var service = this;
+
+  service.addClient(fName, lName, eMail, pNumber, fDish){
+    $http({
+      method: 'GET',
+      url: ( ApiPath + '/menu_items/' + fDish + '.json')
+    })
+    var client = {
+      firstName: fName,
+      lasteName: lName,
+      eMail: eMail,
+      phoneNumber: pNumber,
+
+    }
+
+  }
+}
 
 })();
